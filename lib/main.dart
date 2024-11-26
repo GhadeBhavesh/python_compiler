@@ -59,100 +59,106 @@ class _PythonExecutorScreenState extends State<PythonExecutorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Python Code Executor'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            // Input Area
-            TextField(
-              controller: _codeController,
-              maxLines: 10,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Enter Python code here',
-              ),
-            ),
-            const SizedBox(height: 16),
-
-            // Output Area
-            Expanded(
-              child: SingleChildScrollView(
-                child: Text(
-                  _output.isEmpty ? 'Output will appear here' : _output,
-                  style: const TextStyle(fontSize: 16),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.blue,
+          title: const Text(
+            'Python Code Executor',
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              // Input Area
+              TextField(
+                controller: _codeController,
+                maxLines: 10,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Enter Python code here',
                 ),
               ),
-            ),
+              const SizedBox(height: 16),
 
-            // Buttons at the Bottom
-            Row(
-              children: [
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () => executeCode(_codeController.text),
-                    child: Container(
-                      height: 50,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: Colors.blue, // Background color
-                        borderRadius: BorderRadius.circular(8),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.blue.withOpacity(0.5),
-                            blurRadius: 4,
-                            offset: const Offset(0, 2),
+              // Output Area
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Text(
+                    _output.isEmpty ? 'Output will appear here' : _output,
+                    style: const TextStyle(fontSize: 16),
+                  ),
+                ),
+              ),
+
+              // Buttons at the Bottom
+              Row(
+                children: [
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () => executeCode(_codeController.text),
+                      child: Container(
+                        height: 50,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Colors.blue, // Background color
+                          borderRadius: BorderRadius.circular(8),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.blue.withOpacity(0.5),
+                              blurRadius: 4,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: const Text(
+                          'Run Code',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
                           ),
-                        ],
-                      ),
-                      child: const Text(
-                        'Run Code',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(width: 16),
+                  const SizedBox(width: 16),
 
-                // Clear Button
-                Expanded(
-                  child: GestureDetector(
-                    onTap: clearFields,
-                    child: Container(
-                      height: 50,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: Colors.red, // Background color
-                        borderRadius: BorderRadius.circular(8),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.red.withOpacity(0.5),
-                            blurRadius: 4,
-                            offset: const Offset(0, 2),
+                  // Clear Button
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: clearFields,
+                      child: Container(
+                        height: 50,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Colors.red, // Background color
+                          borderRadius: BorderRadius.circular(8),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.red.withOpacity(0.5),
+                              blurRadius: 4,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: const Text(
+                          'Clear',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
                           ),
-                        ],
-                      ),
-                      child: const Text(
-                        'Clear',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
